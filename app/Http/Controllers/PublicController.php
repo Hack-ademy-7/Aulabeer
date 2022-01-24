@@ -54,7 +54,7 @@ class PublicController extends Controller
         'email' => 'email:rfc,dns'
     ]);
     Mail::to($validated['email'])->send(new ContactReceived($validated));
-    return redirect()->route('welcome')->with("message", "Hola $request->name, hemos recibido tu mensaje $request->description, pronto te contestaremos.");
+    return redirect()->route('welcome')->with("message", "Hola $request->name, hemos recibido tu mensaje <span class='text-info'>$request->description</span>, pronto te contestaremos.");
  }
 
 }

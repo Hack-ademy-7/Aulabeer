@@ -21,8 +21,7 @@ class ContactReceived extends Mailable
     public function __construct($contact)
     {
         $this->contact = $contact;
-      
-        
+         
     }
 
     /**
