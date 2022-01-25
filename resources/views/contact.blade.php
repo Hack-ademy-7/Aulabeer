@@ -1,4 +1,11 @@
 @extends('layouts.app')
+@push("style")
+<style>
+    h1 {
+        color: red
+    }
+</style>
+@endpush
 @section('content')
 <div class="container">
     <div class="row">

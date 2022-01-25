@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Mail\ContactReceived;
 use Illuminate\Support\Facades\Mail;
+use App\Http\Requests\ContactRequest;
 
 class PublicController extends Controller
 {
@@ -43,16 +44,12 @@ class PublicController extends Controller
          
   
     
-    return view('detalle', ["person"=>$person]);
+    return view('detalle', compact('person'));
 }
 
- public function store(Request $request){
+ public function store(ContactRequest $request){
     //comportamientos
-    $validated = $request->validate([
-        'name' => ['required', 'min:2', 'max:20'],
-        'description' => ['required','min:10', 'max:500'],
-        'email' => 'email:rfc,dns'
-    ]);
+    $validated = $request->except("_token");
     Mail::to($validated['email'])->send(new ContactReceived($validated));
     return redirect()->route('welcome')->with("message", "Hola $request->name, hemos recibido tu mensaje <span class='text-info'>$request->description</span>, pronto te contestaremos.");
  }
