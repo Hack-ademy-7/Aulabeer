@@ -1,11 +1,4 @@
 @extends('layouts.app')
-@push("style")
-<style>
-    h1 {
-        color: red
-    }
-</style>
-@endpush
 @section('content')
 <div class="container">
     <div class="row">
@@ -17,7 +10,7 @@
 <div class="container my-5 py-5">
     <div class="row">
         <div class="col-12 col-md-6 offset-md-3">
-            <form action="{{ route('contact.store') }}" method="POST">
+            <form action="{{ route('contacts.store') }}" method="POST">
                 @csrf
                 <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">Email address</label>

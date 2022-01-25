@@ -13,7 +13,10 @@
             <a class="nav-link" href="{{  route ('about')  }}">Sobre nosotros</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{  route ('contact')  }}">Contacta con nosotros</a>
+            <a class="nav-link" href="{{  route ('contacts.create')  }}">Contacta con nosotros</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{  route ('contacts.index')  }}">Contactos</a>
           </li>
       </div>
     </div>

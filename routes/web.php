@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AboutController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\PublicController;
  
 /*
@@ -21,8 +22,10 @@ Route::get('/aboutUs', AboutController::class)->name('about');
 //ruta paramétrica
 Route::get('/detalle/{key}', [PublicController::class, 'detalle'])->where('name', '[A-Za-z]+')->name('detalle');
 
-//ruta de devolución de vista
-Route::view('/contact', 'contact')->name('contact');
 
+// ruta para enseñar todos los contactos
+Route::get('/contacts',[ContactController::class,'index'])->name('contacts.index');
+//ruta de devolución de vista
+Route::get('/contacts/create', [ContactController::class,'create'])->name('contacts.create');
 //ruta que guarde los datos
-Route::post('/contact', [PublicController::class, 'store'])->name('contact.store');
+Route::post('/contacts', [ContactController::class, 'store'])->name('contacts.store');
