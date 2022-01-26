@@ -18,6 +18,12 @@
           <li class="nav-item">
             <a class="nav-link" href="{{  route ('contacts.index')  }}">Contactos</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{  route ('breweries.create')  }}">New Brewery</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{  route ('breweries.index')  }}">Breweries</a>
+          </li>
       </div>
     </div>
   </nav>

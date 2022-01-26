@@ -32,13 +32,13 @@ class ContactController extends Controller
         // DB::table('contacts')->insert($validated);
 
 
-        $contact = new Contact();
+        // $contact = new Contact();
 
-        $contact->name=$validated['name'];
-        $contact->description=$validated['description'];
-        $contact->email=$validated['email'];
+        // $contact->name=$validated['name'];
+        // $contact->description=$validated['description'];
+        // $contact->email=$validated['email'];
 
-        $contact->save();
+        // $contact->save();
 
         // Mass assignement
         Contact::create($validated);

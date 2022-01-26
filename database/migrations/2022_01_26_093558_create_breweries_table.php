@@ -17,6 +17,7 @@ class CreateBreweriesTable extends Migration
             $table->id();
             $table->string('name');
             $table->text('description');
+            $table->integer('capacity');
             $table->timestamps();
         });
     }
