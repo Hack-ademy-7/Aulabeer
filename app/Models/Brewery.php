@@ -12,6 +12,8 @@ class Brewery extends Model
 
     protected $fillable = ['name','capacity','description'];
 
+    // protected $with = ['user'];
+
     public function user()
     {
         return $this->belongsTo(User::class);

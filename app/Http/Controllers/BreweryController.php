@@ -16,6 +16,8 @@ class BreweryController extends Controller
      */
     public function index()
     {
+        // eager loading
+        // $breweries = Brewery::with('user')->get();
         $breweries = Brewery::all();
         return view('breweries.index',compact('breweries'));
     }
