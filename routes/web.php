@@ -5,7 +5,8 @@ use App\Http\Controllers\AboutController;
 use App\Http\Controllers\BreweryController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\PublicController;
- 
+use App\Http\Controllers\UserController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -42,3 +43,6 @@ Route::get('/breweries/{id}',[BreweryController::class,'show'])->name('breweries
 Route::get('/breweries/{id}/edit',[BreweryController::class,'edit'])->name('breweries.edit');
 Route::put('/breweries/{id}',[BreweryController::class,'update'])->name('breweries.update');
 Route::delete('/breweries/{id}',[BreweryController::class,'destroy'])->name('breweries.destroy');
+
+Route::get('/users/profile',[UserController::class,'showAuth'])->name('users.showAuth');
+Route::get('/users/{id}',[UserController::class,'show'])->name('users.show');

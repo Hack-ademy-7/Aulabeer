@@ -32,7 +32,7 @@
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
               @auth
-              <li><a class="dropdown-item" href="#">{{auth()->user()->name}}</a></li>
+              <li><a class="dropdown-item" href="{{route('users.showAuth')}}">{{auth()->user()->name}}</a></li>
               <li><form action="{{route('logout')}}" method="POST">
                 @csrf 
                 <button class="dropdown-item" type="submit">Logout</button>
