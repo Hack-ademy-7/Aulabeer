@@ -28,6 +28,8 @@
         <div class="col-12 col-md-6">
             <h1>{{$brewery->name}}</h1>
             <div>Capacity: {{$brewery->capacity}}</div>
+            <p class="card-text"><small class="text-muted">Created by {{$brewery->user->name}}</small></p>
+
             <p>{{$brewery->description}} Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum nisi in cupiditate, libero impedit ad ex dolor quibusdam pariatur qui. Blanditiis accusamus vitae adipisci molestiae! Reiciendis totam beatae repellat itaque.</p>
             <a href="{{route('breweries.edit',['id'=>$brewery->id])}}" class="btn btn-warning btn-sm">Edit</a>
             <form id="deleteForm" action="{{route('breweries.destroy',['id'=>$brewery->id])}}" method="POST">

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Brewery;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\BreweryRequest;
 
 class BreweryController extends Controller
@@ -37,8 +38,14 @@ class BreweryController extends Controller
      */
     public function store(BreweryRequest $request)
     {
-        // guardar la brewery en el db
-        Brewery::create($request->all());
+        // verificar si está autentificado
+        if(!$user = Auth::user()){
+            return redirect()->route('register')->withMessage('You are not logged in, plese do it');
+        }
+        
+        // guardar la brewery en el db asociandola a user
+        $user->breweries()->create($request->all());
+        // Brewery::create($request->all());
 
         return redirect()->route('breweries.index')->withMessage('Brewery successfully created!');
     }

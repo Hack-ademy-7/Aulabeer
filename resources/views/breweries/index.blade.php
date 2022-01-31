@@ -22,6 +22,7 @@
                           </h5>
                           <p class="card-text">{{$brewery->description}}</p>
                           <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                          <p class="card-text"><small class="text-muted">Created by {{$brewery->user->name}}</small></p>
                           <a href="{{route('breweries.edit',['id'=>$brewery->id])}}" class="btn btn-warning btn-sm">Edit</a>
                           <form id="deleteForm" action="{{route('breweries.destroy',['id'=>$brewery->id])}}" method="POST">
                           @csrf
