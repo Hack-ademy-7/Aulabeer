@@ -18,11 +18,32 @@
           <li class="nav-item">
             <a class="nav-link" href="{{  route ('contacts.index')  }}">Contactos</a>
           </li>
+          @auth
           <li class="nav-item">
             <a class="nav-link" href="{{  route ('breweries.create')  }}">New Brewery</a>
           </li>
+          @endauth
           <li class="nav-item">
             <a class="nav-link" href="{{  route ('breweries.index')  }}">Breweries</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Auth
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              @auth
+              <li><a class="dropdown-item" href="#">{{auth()->user()->name}}</a></li>
+              <li><form action="{{route('logout')}}" method="POST">
+                @csrf 
+                <button class="dropdown-item" type="submit">Logout</button>
+              </form></li>
+              @endauth
+              @guest
+              <li><a class="dropdown-item" href="{{route('login')}}">Login</a></li>
+              <li><a class="dropdown-item" href="{{route('register')}}">Register</a></li>
+              @endguest
+              
+            </ul>
           </li>
       </div>
     </div>
