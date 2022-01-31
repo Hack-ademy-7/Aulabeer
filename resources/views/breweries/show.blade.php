@@ -31,12 +31,16 @@
             <p class="card-text"><small class="text-muted">Created by {{$brewery->user->name}}</small></p>
 
             <p>{{$brewery->description}} Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum nisi in cupiditate, libero impedit ad ex dolor quibusdam pariatur qui. Blanditiis accusamus vitae adipisci molestiae! Reiciendis totam beatae repellat itaque.</p>
-            <a href="{{route('breweries.edit',['id'=>$brewery->id])}}" class="btn btn-warning btn-sm">Edit</a>
-            <form id="deleteForm" action="{{route('breweries.destroy',['id'=>$brewery->id])}}" method="POST">
-              @csrf
-              @method("DELETE")
-              <button type="submit" class="btn btn-danger btn-sm btnDelete">Delete</button>
-            </form>
+           @auth
+              @if(auth()->id() == $brewery->user_id)
+              <a href="{{route('breweries.edit',['id'=>$brewery->id])}}" class="btn btn-warning btn-sm">Edit</a>
+              <form id="deleteForm" action="{{route('breweries.destroy',['id'=>$brewery->id])}}" method="POST">
+                @csrf
+                @method("DELETE")
+                <button type="submit" class="btn btn-danger btn-sm btnDelete">Delete</button>
+              </form>
+              @endif
+            @endauth
         </div>
     </div>
 </div>

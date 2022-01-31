@@ -71,7 +71,18 @@ class BreweryController extends Controller
      */
     public function edit($id)
     {
+         // verificar si estás autentificado
+        if(!$user = Auth::user()){
+            return redirect()->route('register')->withMessage('You are not logged in, plese do it');
+        }
+        // recupero la brewery que quiero modificar
         $brewery = Brewery::findOrFail($id);
+
+         // veriifcar si eres el creador de la brewery
+        if($user->id != $brewery->user_id){
+            return back()->withMessage("You are not the creator!");
+        }
+        
 
         return view('breweries.edit',compact('brewery'));
     }
@@ -85,8 +96,17 @@ class BreweryController extends Controller
      */
     public function update(BreweryRequest $request, $id)
     {
+         // verificar si estás autentificado
+        if(!$user = Auth::user()){
+            return redirect()->route('register')->withMessage('You are not logged in, plese do it');
+        }
         // recupero la brewery que quiero modificar
         $brewery = Brewery::findOrFail($id);
+
+         // veriifcar si eres el creador de la brewery
+        if($user->id != $brewery->user_id){
+            return back()->withMessage("You are not the creator!");
+        }
 
         $brewery->update($request->all());
     
@@ -101,7 +121,18 @@ class BreweryController extends Controller
      */
     public function destroy($id)
     {
+         // verificar si estás autentificado
+        if(!$user = Auth::user()){
+            return redirect()->route('register')->withMessage('You are not logged in, plese do it');
+        }
+        // recupero la brewery que quiero modificar
         $brewery = Brewery::findOrFail($id);
+
+         // veriifcar si eres el creador de la brewery
+        if($user->id != $brewery->user_id){
+            return back()->withMessage("You are not the creator!");
+        }
+        
 
         $brewery->delete();
 
