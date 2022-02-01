@@ -20,6 +20,14 @@
                   <input type="number" class="form-control" id="exampleInputPassword1" name="capacity">
                 </div>
                 <textarea name="description" id="" cols="30" rows="10" class="form-control mb-3"></textarea>
+                @foreach ($beers as $beer)
+                <div class="form-check mb-3">
+                  <input class="form-check-input" type="checkbox" value="{{ $beer->id }}" id="flexCheckChecked" name="beers[]">
+                  <label class="form-check-label" for="flexCheckChecked">
+                    {{ $beer->name }}
+                  </label>
+                </div>
+                @endforeach
                 <button type="submit" class="btn btn-primary">Create</button>
               </form>
         </div>

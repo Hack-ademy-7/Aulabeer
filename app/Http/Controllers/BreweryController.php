@@ -2,13 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Beer;
 use App\Models\Brewery;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\View;
 use App\Http\Requests\BreweryRequest;
 
 class BreweryController extends Controller
 {
+
+    public function __construct(){
+        View::share('beers', Beer::all());
+    }
     /**
      * Display a listing of the resource.
      *
@@ -42,13 +48,15 @@ class BreweryController extends Controller
     {
         // verificar si está autentificado
         if(!$user = Auth::user()){
-            return redirect()->route('register')->withMessage('You are not logged in, plese do it');
+            return redirect()->route('register')->withMessage('You are not logged in, please do it');
         }
         
         // guardar la brewery en el db asociandola a user
-        $user->breweries()->create($request->all());
+      $cerveceria =  $user->breweries()->create($request->all());
         // Brewery::create($request->all());
 
+        //attach
+      $cerveceria->beers()->attach($request->beers);
         return redirect()->route('breweries.index')->withMessage('Brewery successfully created!');
     }
 
@@ -80,12 +88,12 @@ class BreweryController extends Controller
         // recupero la brewery que quiero modificar
         $brewery = Brewery::findOrFail($id);
 
-         // veriifcar si eres el creador de la brewery
+         // verificar si eres el creador de la brewery
         if($user->id != $brewery->user_id){
             return back()->withMessage("You are not the creator!");
         }
         
-
+       
         return view('breweries.edit',compact('brewery'));
     }
 
@@ -105,12 +113,13 @@ class BreweryController extends Controller
         // recupero la brewery que quiero modificar
         $brewery = Brewery::findOrFail($id);
 
-         // veriifcar si eres el creador de la brewery
+         // verificar si eres el creador de la brewery
         if($user->id != $brewery->user_id){
             return back()->withMessage("You are not the creator!");
         }
-
         $brewery->update($request->all());
+        //sync
+        $brewery->beers()->sync($request->beers);
     
         return redirect()->route('breweries.show',$id)->withMessage('Brewery modified successfully');
     }
@@ -130,10 +139,12 @@ class BreweryController extends Controller
         // recupero la brewery que quiero modificar
         $brewery = Brewery::findOrFail($id);
 
-         // veriifcar si eres el creador de la brewery
+         // verificar si eres el creador de la brewery
         if($user->id != $brewery->user_id){
             return back()->withMessage("You are not the creator!");
         }
+
+        //detach
         
 
         $brewery->delete();

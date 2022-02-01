@@ -3,7 +3,7 @@
 <div class="container">
     <div class="row">
         <div class="col-12 text-center">
-            <h1>Modidy brewery</h1>
+            <h1>Modify brewery</h1>
         </div>
     </div>
     <div class="row">
@@ -21,6 +21,14 @@
                   <input type="number" class="form-control" id="exampleInputPassword1" name="capacity" value="{{old('capacity') ?? $brewery->capacity}}">
                 </div>
                 <textarea name="description" id="" cols="30" rows="10" class="form-control mb-3">{{old('description') ?? $brewery->description}}</textarea>
+                @foreach ($beers as $beer)
+                <div class="form-check mb-3">
+                  <input class="form-check-input" type="checkbox" value="{{ $beer->id }}" id="flexCheckChecked" name="beers[]" @if($brewery->beers->contains($beer)) checked @endif>
+                  <label class="form-check-label" for="flexCheckChecked">
+                    {{ $beer->name }}
+                  </label>
+                </div>
+                @endforeach
                 <button type="submit" class="btn btn-primary">Update</button>
               </form>
         </div>

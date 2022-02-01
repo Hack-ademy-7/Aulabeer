@@ -1,6 +1,5 @@
 <!doctype html>
 <html lang="en">
-
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -12,7 +11,6 @@
     @stack("style")
     <title>@yield('title')</title>
 </head>
-
 <body>
     @include('layouts._nav')
     @if (session("message"))
@@ -25,7 +23,5 @@
     @include('layouts._footer')
     <script src="{{ mix('/js/app.js') }}"></script>
     @stack('scripts')
-
 </body>
-
 </html>
